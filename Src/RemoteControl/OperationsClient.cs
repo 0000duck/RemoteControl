@@ -6,7 +6,7 @@ namespace RemoteControl
     {
         public void On<TResult, TParameter>(string operationName, Func<TParameter, TResult> operation)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

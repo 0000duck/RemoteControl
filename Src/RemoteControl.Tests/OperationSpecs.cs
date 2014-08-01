@@ -26,11 +26,12 @@ namespace RemoteControl.Tests
     {
         Establish context = () => operation = new Operation<String, Model>("HelloWorld");
 
-        Because of = () =>
-                     {
-                         promisse = operation.Execute(new Model {Name = "AlienEngineer"});
-                         hasValue = promisse.Wait(Promisse.INFINITE);
-                     };
+        Because of =
+            () =>
+            {
+                promisse = operation.Execute(new Model { Name = "AlienEngineer" });
+                hasValue = promisse.Wait(Promisse.INFINITE);
+            };
 
         It should_not_be_null = () => promisse.ShouldNotBeNull();
         It should_have_a_successfull_wait_result = () => hasValue.ShouldBeTrue();

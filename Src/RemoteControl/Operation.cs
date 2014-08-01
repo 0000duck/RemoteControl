@@ -1,5 +1,4 @@
-﻿using System;
-using RemoteControl.Operations;
+﻿using RemoteControl.Operations;
 
 namespace RemoteControl
 {
@@ -19,11 +18,15 @@ namespace RemoteControl
         /// <summary>
         /// Executes this operation.
         /// </summary>
-        /// <param name="parameters">The parameters.</param>
+        /// <param name="parameter">The parameter.</param>
         /// <returns></returns>
-        public IPromisse<TResult> Execute(TParameter parameters)
+        public IPromisse<TResult> Execute(TParameter parameter)
         {
-            throw new NotImplementedException();
+            return FrameworkHelper.Schedule<TResult>(new MetaOperation
+            {
+                Parameter = parameter.Encode(),
+                OperationName = _operationName
+            });
         }
     }
 }
