@@ -39,8 +39,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="IPromisse.cs" />
+    <Compile Include="Operation.cs" />
+    <Compile Include="OperationsClient.cs" />
+    <Compile Include="Operations\IOperation.cs" />
+    <Compile Include="MessageRepository.cs" />
+    <Compile Include="Operations\IParameter.cs" />
+    <Compile Include="Operations\IResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Operations\Results\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
