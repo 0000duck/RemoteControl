@@ -24,7 +24,7 @@ namespace RemoteControl
         {
             return FrameworkHelper.Schedule<TResult>(new MetaOperation
             {
-                Parameter = parameter.Encode(),
+                Parameter = parameter,
                 OperationName = _operationName
             });
         }

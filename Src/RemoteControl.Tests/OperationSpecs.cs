@@ -30,7 +30,7 @@ namespace RemoteControl.Tests
             () =>
             {
                 promisse = operation.Execute(new Model { Name = "AlienEngineer" });
-                hasValue = promisse.Wait(Promisse.INFINITE);
+                hasValue = promisse.Wait(Promisses.INFINITE);
             };
 
         It should_not_be_null = () => promisse.ShouldNotBeNull();

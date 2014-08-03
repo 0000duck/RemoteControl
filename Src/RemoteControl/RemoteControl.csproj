@@ -42,8 +42,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContractHelper.cs" />
+    <Compile Include="Exceptions\EnsureFailedException.cs" />
     <Compile Include="FrameworkHelper.cs" />
     <Compile Include="IPromisse.cs" />
+    <Compile Include="Messaging\FileSystemMessager.cs" />
+    <Compile Include="Messaging\IMessager.cs" />
+    <Compile Include="Messaging\MessagerContext.cs" />
     <Compile Include="Operation.cs" />
     <Compile Include="OperationsClient.cs" />
     <Compile Include="Operations\IOperation.cs" />
@@ -51,12 +56,11 @@
     <Compile Include="Operations\IParameter.cs" />
     <Compile Include="Operations\IResult.cs" />
     <Compile Include="Operations\MetaOperation.cs" />
+    <Compile Include="Operations\Promisse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scheduling\ExecutionScheduler.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Operations\Results\" />
-    <Folder Include="Scheduling\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

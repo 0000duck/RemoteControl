@@ -1,4 +1,5 @@
-﻿using RemoteControl.Operations;
+﻿using RemoteControl.Messaging;
+using RemoteControl.Operations;
 
 namespace RemoteControl.Scheduling
 {
@@ -10,14 +11,32 @@ namespace RemoteControl.Scheduling
     /// </summary>
     class ExecutionScheduler
     {
+        private readonly IMessager _requestMessager;
+        private readonly IMessager _responseMessager;
 
-        //public IPromisse<TResult> Schedule<TResult>(MetaOperation operation)
-        //{
-            
-        //} 
+        public ExecutionScheduler(IMessager requestMessager, IMessager responseMessager)
+        {
+            _requestMessager = requestMessager;
+            _responseMessager = responseMessager;
+        }
+
+        public IPromisse<TResult> Schedule<TResult>(MetaOperation operation)
+        {
+            _requestMessager.PushMessage(operation.Encode());
+
+            return new Promisse<TResult>(
+                () =>
+                {
+                    var message = _responseMessager.PopMessage();
+                    var response = message.Decode<MetaOperation>();
+
+                    return (TResult) response.Result;
+                });
+
+        }
 
     }
 
 
-    
+
 }

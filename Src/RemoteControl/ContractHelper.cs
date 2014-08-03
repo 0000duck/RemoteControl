@@ -13,6 +13,13 @@ namespace RemoteControl
                 throw new EnsureFailedException(String.Format(message, args));
             }
         }
+        public static void EnsureNotNull(this Object obj, String message, params Object[] args)
+        {
+            if (obj == null)
+            {
+                throw new EnsureFailedException(String.Format(message, args));
+            }
+        }
 
     }
 }

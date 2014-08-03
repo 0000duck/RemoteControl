@@ -7,7 +7,8 @@ namespace RemoteControl.Operations
     /// </summary>
     class MetaOperation
     {
-        public String Parameter { get; set; }
+        public Object Parameter { get; set; }
+        public Object Result { get; set; }
         public String OperationName { get; set; }
     }
 }

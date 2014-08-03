@@ -1,6 +1,8 @@
 ﻿using System;
 using Newtonsoft.Json;
+using RemoteControl.Messaging;
 using RemoteControl.Operations;
+using RemoteControl.Scheduling;
 
 namespace RemoteControl
 {
@@ -36,26 +38,35 @@ namespace RemoteControl
         /// <returns>A promisse of result.</returns>
         internal static IPromisse<TResult> Schedule<TResult>(MetaOperation metaOperation)
         {
-            return new MockPromisse<TResult>();
+            var scheduler = GetScheduler();
+
+            return scheduler.Schedule<TResult>(metaOperation);
+        }
+
+        private static ExecutionScheduler GetScheduler()
+        {
+            var requestMessager = new FileSystemMessager();
+            var responseMessager = new FileSystemMessager();
+
+            requestMessager.InitializeMessager(
+                new MessagerContext
+                {
+                    QueueName = "RequestQueue1"
+                });
+
+            responseMessager.InitializeMessager(
+                new MessagerContext
+                {
+                    QueueName = "ResponseQueue1"
+                });
+
+            return new ExecutionScheduler(requestMessager, responseMessager);
+        }
+
+        public static void AddOperationHandler(String operationName, Func<Object, Object> operationFunc)
+        {
+            throw new NotImplementedException();
         }
     }
 
-    /// <summary>
-    /// Just for testing and thinking process.
-    /// </summary>
-    public class MockPromisse<T> : IPromisse<T>
-    {
-        public MockPromisse()
-        {
-            IsCompleted = true;
-            Value = default (T);
-        }
-
-        public bool IsCompleted { get; private set; }
-        public T Value { get; private set; }
-        public bool Wait(long timeout)
-        {
-            return true;
-        }
-    }
 }

@@ -5,12 +5,12 @@ namespace RemoteControl
     /// <summary>
     /// Helper class for Promisses
     /// </summary>
-    public static class Promisse
+    public static class Promisses
     {
         /// <summary>
         /// The infinite waiting time.
         /// </summary>
-        public const long INFINITE = -1;
+        public const int INFINITE = -1;
     }
 
     /// <summary>
@@ -40,6 +40,6 @@ namespace RemoteControl
         /// </summary>
         /// <param name="timeout">The timeout.</param>
         /// <returns><c>true</c> if promisse has came thru; otherwise, <c>false</c></returns>
-        Boolean Wait(long timeout);
+        Boolean Wait(int timeout);
     }
 }
